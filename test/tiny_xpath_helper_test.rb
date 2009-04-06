@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class TinyXpathHelperTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+class TinyXPathHelperTest < ActiveSupport::TestCase
+  test "find first returns nil if there is no match" do
+    xpath = TinyXPathHelper.new("<xml/>")
+    assert xpath.first('*').nil?
   end
 end

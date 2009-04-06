@@ -66,7 +66,7 @@ class TinyXPathHelper
     count = options[:find] || :first
 
     if format == :text
-      filter = self.method(:xml_node_to_text)
+      filter = lambda{|node| node && xml_node_to_text(node) }
     elsif format == :xml
       filter = lambda{|node| node }
     else
