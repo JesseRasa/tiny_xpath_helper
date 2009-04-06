@@ -3,7 +3,7 @@
   <node>two</node>
   <node>three
     <three>
-      <a/><b/><c/>
+      <a/><b beta="true"/><c/>
     </three>
   </node>
 </xml>

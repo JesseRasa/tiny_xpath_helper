@@ -35,6 +35,12 @@ and :find can be :first or :all
   >> xpath.find_xpath( 'node/@style', :format => :xml, :find => :all )
   => [style='first']
 
+The output from :format => :xml is suitable for passing to another TinyXPathHelper
+  >> node_tree = xpath.find_xpath( 'node/three', :format => :xml )
+  >> deeper_xpath = TinyXPathHelper.new( node_tree )
+  >> deeper_xpath[ 'b/@beta' ]
+  => ["true"]
+  
 
 Copyright (c) 2009 raSANTIAGO + Associates LLC
 
