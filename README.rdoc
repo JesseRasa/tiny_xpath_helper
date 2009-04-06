@@ -41,7 +41,8 @@ The output from :format => :xml is suitable for passing to another TinyXPathHelp
   >> deeper_xpath[ 'b/@beta' ]
   => ["true"]
   
+--
+doctest_require: 'lib/tiny_xpath_helper.rb'
+++
 
 Copyright (c) 2009 raSANTIAGO + Associates LLC
-
-doctest_require: 'lib/tiny_xpath_helper.rb'
