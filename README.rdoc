@@ -1,0 +1,41 @@
+= TinyXPathHelper
+
+== Description
+
+Very light syntax for using XPaths on XML documents or REXML nodes
+
+== Examples
+
+TinyXPathHelper.new takes one parameter: an XML document (as a string or IO) or a REXML element
+  >> xpath = TinyXPathHelper.new( File.open( 'test/xml/sample.xml' ) )
+
+Then, to find the string values of matching nodes, there's a super-light syntax:
+  >> xpath[ 'node/' ]
+  => ["one", "two", "three\n    "]
+
+It works on attributes, too
+  >> xpath[ 'node/@style' ]
+  => ["first"]
+
+If you prefer, you can use #all instead of square brackets
+  >> xpath.all( 'node/@style' )
+  => ["first"]
+
+If you just want the first match, use #first
+  >> xpath.first( 'node/' )
+  => "one"
+
+A slightly more elaborate API is available as #find_xpath
+  >> xpath.find_xpath( 'node/@style', :format => :xml, :find => :first )
+  => style='first'
+
+Where :format can be :text (returns a string), or :xml (returns a REXML element),
+and :find can be :first or :all
+
+  >> xpath.find_xpath( 'node/@style', :format => :xml, :find => :all )
+  => [style='first']
+
+
+Copyright (c) 2009 raSANTIAGO + Associates LLC
+
+doctest_require: 'lib/tiny_xpath_helper.rb'

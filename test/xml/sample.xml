@@ -1,0 +1,9 @@
+<xml>
+  <node style="first">one</node>
+  <node>two</node>
+  <node>three
+    <three>
+      <a/><b/><c/>
+    </three>
+  </node>
+</xml>
