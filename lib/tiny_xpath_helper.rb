@@ -61,6 +61,7 @@ class TinyXPathHelper
     format = options[:format] || :text
     if format == :array
       options.update( :format => :text, :find => :all )
+      format = :text
     end
 
     count = options[:find] || :first
