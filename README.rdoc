@@ -40,6 +40,11 @@ The output from :format => :xml is suitable for passing to another TinyXPathHelp
   >> deeper_xpath = TinyXPathHelper.new( node_tree )
   >> deeper_xpath[ 'b/@beta' ]
   => ["true"]
+
+If you want empty documents to not raise an error
+  >> empty_xpath = TinyXPathHelper.new( String.new, :allow_empty_document => true )
+  >> empty_xpath[ 'b/@beta' ]
+  => []
   
 --
 doctest_require: 'lib/tiny_xpath_helper.rb'

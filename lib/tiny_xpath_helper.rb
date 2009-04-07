@@ -3,9 +3,9 @@ require 'rexml/document'
 class TinyXPathHelper
   attr :node
 
-  def initialize(xml)
+  def initialize(xml, options = {})
     @xml  = xml
-    @node = self.class.xml_node_for_xmlish(xml)
+    @node = self.class.xml_node_for_xmlish(xml, options)
   end
   
   def find_xpath(xpath_expr, options = {})
@@ -31,7 +31,7 @@ class TinyXPathHelper
     io_stream_classes + [ String, REXML::Document ]
   end
 
-  def self.xml_node_for_xmlish( xml )
+  def self.xml_node_for_xmlish( xml, options = {} )
     if io_stream_classes.any?{|k| k === xml }
       xml = xml.read
     end
@@ -39,7 +39,11 @@ class TinyXPathHelper
       xml = REXML::Document.new(xml)
     end
     if REXML::Document === xml
-      xml = xml.root
+      if options[:allow_empty_document] and ! xml.root
+        xml = xml
+      else
+        xml = xml.root
+      end
     end
     if not REXML::Element === xml
       raise TypeError.new("Expected REXML::Element, got #{xml.class}")
